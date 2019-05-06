@@ -29,6 +29,8 @@
 	var dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
 			
 	var pageWidthNoMargins,pageHeightNoMargins; 
+	
+	var addRegistrationDots = false;
 			
 	var unit = "in";
 	
@@ -52,6 +54,8 @@
 			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
 			
 			packMethod = settings.packerMethod;
+			
+			addRegistrationDots = settings.addRegistrationDots;
 		
 			var layouts = null;
 		
@@ -110,116 +114,125 @@
 				}
 				
 		var packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
-				
-		var rand = Math.random() * pageWidth/3;
-				
-				
-				var dotTopLeft = {
-				            "class": "Mark",
-				            "x": pageMargin + 0.01 + rand,
-				            "y": pageMargin + 0.01
-				          };
-				
-				var dotTopRight =        {
-				            "class": "Mark",
-				            "x": pageWidth - pageMargin*2 - dotWidth - rand,
-				            "y": pageMargin
-				          }
-				
-				var dotMiddleLeft = {
-				            "class": "Mark",
-				            "x": pageMargin,
-				            "y": (pageHeight - pageMargin*2 - dotWidth - rand)/2
-				          }
-				          
-				var dotMiddleRight = {
-				            "class": "Mark",
-				            "x": pageWidth - pageMargin*2 - dotWidth,
-				            "y": (pageHeight - pageMargin*2 - dotWidth - rand)/2
-				          }
-				
-				var dotTopMiddle ={
-				            "class": "Mark",
-				            "x": (pageWidth - pageMargin*2 - dotWidth - rand)/2,
-				            "y": pageMargin
-				          }
-				          
-				var dotBottomMiddle ={
-				            "class": "Mark",
-				            "x": (pageWidth - pageMargin*2 - dotWidth - rand)/2,
-				            "y": pageHeight - pageMargin*2 - dotWidth
-				          }
-				
-				var dotBottomLeft ={
-				            "class": "Mark",
-				            "x": pageMargin,
-				            "y": pageHeight - pageMargin*2 - dotWidth - rand
-				          }
-				
-				var dotBottomRight ={
-				            "class": "Mark",
-				            "x": pageWidth - pageMargin*2 - dotWidth - rand,
-				            "y": pageHeight - pageMargin*2 - dotWidth
-				          } 
+			
+		var pages = [];
+		pages[0] = {
+				elements : [
+					  
+			      ]
+			}
+			
+		if(addRegistrationDots){	
+			var rand = Math.random() * pageWidth/3;
 				
 				
-				var pattern1 = count == 1;
-				var pattern2 = count == 2;
-				var pattern3 = count == 3;
-				var pattern4 = count == 4;
-				
-				var pages = [];
-				pages[0] = {
-					elements : [
-						  
-				      ]
-				}
-				
-				if(pattern1){
-					pages[0].elements.push(dotTopLeft);
-					pages[0].elements.push(dotTopRight);
-					pages[0].elements.push(dotBottomMiddle);
-					pages[0].elements.push(dotBottomRight);
-					pages[0].elements.push(dotMiddleLeft);
-				}else if(pattern2){
+			var dotTopLeft = {
+			            "class": "Mark",
+			            "x": pageMargin + 0.01 + rand,
+			            "y": pageMargin + 0.01
+			          };
+			
+			var dotTopRight =        {
+			            "class": "Mark",
+			            "x": pageWidth - pageMargin*2 - dotWidth - rand,
+			            "y": pageMargin
+			          }
+			
+			var dotMiddleLeft = {
+			            "class": "Mark",
+			            "x": pageMargin,
+			            "y": (pageHeight - pageMargin*2 - dotWidth - rand)/2
+			          }
+			          
+			var dotMiddleRight = {
+			            "class": "Mark",
+			            "x": pageWidth - pageMargin*2 - dotWidth,
+			            "y": (pageHeight - pageMargin*2 - dotWidth - rand)/2
+			          }
+			
+			var dotTopMiddle ={
+			            "class": "Mark",
+			            "x": (pageWidth - pageMargin*2 - dotWidth - rand)/2,
+			            "y": pageMargin
+			          }
+			          
+			var dotBottomMiddle ={
+			            "class": "Mark",
+			            "x": (pageWidth - pageMargin*2 - dotWidth - rand)/2,
+			            "y": pageHeight - pageMargin*2 - dotWidth
+			          }
+			
+			var dotBottomLeft ={
+			            "class": "Mark",
+			            "x": pageMargin,
+			            "y": pageHeight - pageMargin*2 - dotWidth - rand
+			          }
+			
+			var dotBottomRight ={
+			            "class": "Mark",
+			            "x": pageWidth - pageMargin*2 - dotWidth - rand,
+			            "y": pageHeight - pageMargin*2 - dotWidth
+			          } 
+			
+			
+			var pattern1 = count == 1;
+			var pattern2 = count == 2;
+			var pattern3 = count == 3;
+			var pattern4 = count == 4;
+			
+			
+			if(pattern1){
+				pages[0].elements.push(dotTopLeft);
+				pages[0].elements.push(dotTopRight);
+				pages[0].elements.push(dotBottomMiddle);
+				pages[0].elements.push(dotBottomRight);
+				pages[0].elements.push(dotMiddleLeft);
+			}else if(pattern2){
+				pages[0].elements.push(dotTopMiddle);
+				pages[0].elements.push(dotTopRight);
+				pages[0].elements.push(dotBottomMiddle);
+				pages[0].elements.push(dotBottomLeft);
+				pages[0].elements.push(dotMiddleLeft);
+			}else if(pattern3){
+				pages[0].elements.push(dotTopMiddle);
+				pages[0].elements.push(dotTopLeft);
+				pages[0].elements.push(dotBottomMiddle);
+				pages[0].elements.push(dotBottomRight);
+				pages[0].elements.push(dotMiddleRight);
+			}else if(pattern4){
+				pages[0].elements.push(dotTopRight);
+				pages[0].elements.push(dotTopMiddle);
+				pages[0].elements.push(dotBottomMiddle);
+				pages[0].elements.push(dotMiddleRight);
+				pages[0].elements.push(dotMiddleLeft);
+			}else{
+				if(Math.random() > 0.6)
 					pages[0].elements.push(dotTopMiddle);
+				if(Math.random() > 0.6)
 					pages[0].elements.push(dotTopRight);
+				if(Math.random() > 0.6)
+					pages[0].elements.push(dotTopLeft);
+				if(Math.random() > 0.6)
 					pages[0].elements.push(dotBottomMiddle);
+				if(Math.random() > 0.6)
+					pages[0].elements.push(dotMiddleRight);
+				if(Math.random() > 0.6)
+					pages[0].elements.push(dotMiddleLeft);
+				if(Math.random() > 0.6)
 					pages[0].elements.push(dotBottomLeft);
-					pages[0].elements.push(dotMiddleLeft);
-				}else if(pattern3){
-					pages[0].elements.push(dotTopMiddle);
-					pages[0].elements.push(dotTopLeft);
-					pages[0].elements.push(dotBottomMiddle);
+				if(Math.random() > 0.6)
 					pages[0].elements.push(dotBottomRight);
-					pages[0].elements.push(dotMiddleRight);
-				}else if(pattern4){
-					pages[0].elements.push(dotTopRight);
-					pages[0].elements.push(dotTopMiddle);
-					pages[0].elements.push(dotBottomMiddle);
-					pages[0].elements.push(dotMiddleRight);
-					pages[0].elements.push(dotMiddleLeft);
-				}else{
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotTopMiddle);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotTopRight);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotTopLeft);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotBottomMiddle);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotMiddleRight);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotMiddleLeft);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotBottomLeft);
-					if(Math.random() > 0.6)
-						pages[0].elements.push(dotBottomRight);
-				}
+			}
+		
+		}
+		
+		var dots = [];
+		for(var i=0; i < pages[0].elements.length; i++){
+			dots.push(pages[0].elements[i]);
+		}
+		
 		
 		var pageIndex = 0;
-		
 		
 		
 		try{
@@ -258,29 +271,11 @@
 					pageIndex++;
 					pages[pageIndex] = {
 								elements : [
-								      {
-							            "class": "Mark",
-							            "x": 0.2,
-							            "y": 0.2
-							          },
-							          {
-							            "class": "Mark",
-							            "x": pageWidth - 0.2 - dotWidth,
-							            "y": pageHeight - 0.2 - dotWidth
-							          },
-							          {
-							            "class": "Mark",
-							            "x": 0.2,
-							            "y": pageHeight - 0.2 - dotWidth
-							          },
-							          {
-							            "class": "Mark",
-							            "x": pageWidth - 0.2 - dotWidth,
-							            "y": 0.2
-							          }
+								      
 							      ]
 							}
-							
+					
+					pages[pageIndex].elements = dots;
 							
 					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
 					node = packer.Insert(h, w, packMethod);
