@@ -12,7 +12,7 @@
         		
                 var tmpLayouts = runPacker(items, node);
                 
-                msg.payload.layouts = tmpLayouts;
+                msg.payload = tmpLayouts;
                 
                 node.send(msg);
             });
@@ -46,7 +46,7 @@
 	}
 	
 	function runPacker(items, ref){
-			var allLayouts = [];
+			var layouts = null;
 		
 			if(ref)
 				ref.warn("Order2SiteFlow type " + typeof(clientDetails));
@@ -60,21 +60,12 @@
 			       var item = items[itemName];
 			       //var layout = runPackerCallback(item, itemName,itemsArtMap, ref)
 			       //change to couple of layout, final and cut_file
-			       var layouts = runPackerCallback(item, itemName, ref, count)
-			       
-			       if(ref)
-				   	ref.warn("Order2SiteFlow finalArt " + layouts.finalArt);
-				   	
-				   if(ref)
-				   	ref.warn("Order2SiteFlow cutFile " + layouts.cutFile);
-			       
-			       allLayouts.push(layouts.finalArt);
-			       allLayouts.push(layouts.cutFile);
+			       layouts = runPackerCallback(item, itemName, ref, count)
 			       
 			       count++;
 			  }
 			}
-			return allLayouts;
+			return layouts;
 	}
 	
 	function runPackerCallback(item, itemName, ref, count){	
