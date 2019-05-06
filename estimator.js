@@ -287,8 +287,9 @@
 							      ]
 							}
 					
-					pages[pageIndex].elements = dots;
-							
+					if(addRegistrationDots){
+						pages[pageIndex].elements = dots;
+					}
 					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
 					node = packer.Insert(h, w, packMethod);
 					node["class"] = itemName;
