@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('order-to-siteflow',{
+    RED.nodes.registerType('estimator',{
         category: 'function',
         color: '#FFFFFF',
         defaults: {
@@ -7,9 +7,9 @@
         },
         inputs:1,
         outputs:1,
-        icon: "siteflow.png",
+        icon: "estimator.png",
         label: function() {
-            return this.name||"order-to-siteflow";
+            return this.name||"estimator";
         }
     });
 </script>
@@ -22,5 +22,5 @@
 </script>
 
 <script type="text/x-red" data-help-name="order-to-siteflow">
-    <p>Order2SiteFlow.</p>
+    <p>Estimator.</p>
 </script>
