@@ -69,21 +69,11 @@
 			if(ref)
 				ref.warn("Order2SiteFlow items " + items);
 						
-			var count = 1;		
-			for (var itemName in items) {
-		      if (items.hasOwnProperty(itemName)) { 
-			       var item = items[itemName];
-			       //var layout = runPackerCallback(item, itemName,itemsArtMap, ref)
-			       //change to couple of layout, final and cut_file
-			       layouts = runPackerCallback(item, itemName, ref, count)
-			       
-			       count++;
-			  }
-			}
+			layouts = runPackerCallback(items, ref, count)
 			return layouts;
 	}
 	
-	function runPackerCallback(item, itemName, ref, count){	
+	function runPackerCallback(items, ref, count){	
 			var res = {
 					"defaults": {
 				      "units": unit,//"mm",
@@ -241,99 +231,101 @@
 		
 		var pageIndex = 0;
 		
-		
-		try{
-		
-		      //var item = items[itemName];
-		      var size = item.size;
-		      var w = parseFloat(size.split("x")[0].replace("\"",""));
-			  var h = parseFloat(size.split("x")[1].replace("\"",""));
-			  
-			  h+=cutLinesSpace;
-			  w+=cutLinesSpace;
-		      
-		      res.assets[itemName] = {
-			      "url": item.artwork
-		      }
-		      res.classes.push({
-		        "height": h,
-		        "width": w,
-		        "fit": "fill",
-		        "type": "asset",
-		        "name": itemName,
-		        "asset": itemName
-		      })
-		        
-		      var firstPageIsFull = !fillLastPage; //this is a new option for labelllama: if stickers not fill the page, add more to fill all the page
-		      
-		      if(ref)
-				ref.warn("Order2SiteFlow firstPageIsFull " + firstPageIsFull);
+		for (var itemName in items) {
+			if (items.hasOwnProperty(itemName)) { 
+				try{
 				
-			if(ref)
-				ref.warn("Order2SiteFlow quantity " + item.quantity);
-		      
-		      
-		      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
-		        
-		        node = packer.Insert(h, w, packMethod);
-				if(node.height == 0){
-					firstPageIsFull = true;
-					if(i > item.quantity && fillLastPage){
-						continue;
-					}
-					
-					//page
-					pageIndex++;
-					pages[pageIndex] = {
-								elements : [
-								      
-							      ]
+				      var item = items[itemName];
+				      var size = item.size;
+				      var w = parseFloat(size.split("x")[0].replace("\"",""));
+					  var h = parseFloat(size.split("x")[1].replace("\"",""));
+					  
+					  h+=cutLinesSpace;
+					  w+=cutLinesSpace;
+				      
+				      res.assets[itemName] = {
+					      "url": item.artwork
+				      }
+				      res.classes.push({
+				        "height": h,
+				        "width": w,
+				        "fit": "fill",
+				        "type": "asset",
+				        "name": itemName,
+				        "asset": itemName
+				      })
+				        
+				      var firstPageIsFull = !fillLastPage; //this is a new option for labelllama: if stickers not fill the page, add more to fill all the page
+				      
+				      if(ref)
+						ref.warn("Order2SiteFlow firstPageIsFull " + firstPageIsFull);
+						
+					if(ref)
+						ref.warn("Order2SiteFlow quantity " + item.quantity);
+				      
+				      
+				      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
+				        
+				        node = packer.Insert(h, w, packMethod);
+						if(node.height == 0){
+							firstPageIsFull = true;
+							if(i > item.quantity && fillLastPage){
+								continue;
 							}
-					
-					if(addRegistrationDots){
-						if(ref)
-							ref.warn("Order2SiteFlow add  " + dots.length + " dots");
 							
-						for(var d=0; d < dots.length; d++){
-							pages[pageIndex].elements.push(dots[d]);
+							//page
+							pageIndex++;
+							pages[pageIndex] = {
+										elements : [
+										      
+									      ]
+									}
+							
+							if(addRegistrationDots){
+								if(ref)
+									ref.warn("Order2SiteFlow add  " + dots.length + " dots");
+									
+								for(var d=0; d < dots.length; d++){
+									pages[pageIndex].elements.push(dots[d]);
+								}
+							}
+							packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
+							node = packer.Insert(h, w, packMethod);
+							node["class"] = itemName;
+							delete node.elementInstance;
+							delete node.scaled;
+							
+							node.height = node.height - cutLinesSpace;
+							node.width = node.width - cutLinesSpace;
+							node.x = node.x + pageMargin + dotsSpace; //siteflow consider 0 the starting point, even when we add page margins
+							node.y = node.y + pageMargin + dotsSpace;
+							
+							pages[pageIndex].elements.push(node);
+							
+						}else{
+							node["class"] = itemName;
+							delete node.elementInstance;
+							delete node.scaled;
+							
+							node.height = node.height - cutLinesSpace;
+							node.width = node.width - cutLinesSpace;
+							node.x = node.x + pageMargin + dotsSpace; //siteflow consider 0 the starting point, even when we add page margins
+							node.y = node.y + pageMargin + dotsSpace;
+							
+							pages[pageIndex].elements.push(node);
+							
 						}
 					}
-					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
-					node = packer.Insert(h, w, packMethod);
-					node["class"] = itemName;
-					delete node.elementInstance;
-					delete node.scaled;
-					
-					node.height = node.height - cutLinesSpace;
-					node.width = node.width - cutLinesSpace;
-					node.x = node.x + pageMargin + dotsSpace; //siteflow consider 0 the starting point, even when we add page margins
-					node.y = node.y + pageMargin + dotsSpace;
-					
-					pages[pageIndex].elements.push(node);
-					
-				}else{
-					node["class"] = itemName;
-					delete node.elementInstance;
-					delete node.scaled;
-					
-					node.height = node.height - cutLinesSpace;
-					node.width = node.width - cutLinesSpace;
-					node.x = node.x + pageMargin + dotsSpace; //siteflow consider 0 the starting point, even when we add page margins
-					node.y = node.y + pageMargin + dotsSpace;
-					
-					pages[pageIndex].elements.push(node);
-					
-				}
-			}
-	    
-	    }catch(e){
-		    ref.warn(e);
+			    
+			    }catch(e){
+				    ref.warn(e);
+			    }
+		    }
 	    }
 		res.pages = pages;
 		if(ref)
 			ref.warn(res);
 		
-		res.itemName = itemName;
 		var json = JSON.stringify(res);
 		    
 		return json;
