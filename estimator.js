@@ -287,9 +287,11 @@
 							      ]
 							}
 					
-					if(addRegistrationDots){
+					//if(addRegistrationDots){
+						if(ref)
+							ref.warn("Order2SiteFlow add  " + dots.length + " dots");
 						pages[pageIndex].elements = dots;
-					}
+					//}
 					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
 					node = packer.Insert(h, w, packMethod);
 					node["class"] = itemName;
