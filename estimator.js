@@ -125,6 +125,8 @@
 					  
 			      ]
 			}
+		
+		var dots = [];
 			
 		if(addRegistrationDots){	
 			var rand = Math.random() * pageWidth/3;
@@ -228,12 +230,13 @@
 					pages[0].elements.push(dotBottomRight);
 			}
 		
+			for(var i=0; i < pages[0].elements.length; i++){
+				dots.push(pages[0].elements[i]);
+			}
 		}
 		
-		var dots = [];
-		for(var i=0; i < pages[0].elements.length; i++){
-			dots.push(pages[0].elements[i]);
-		}
+		
+		
 		
 		
 		var pageIndex = 0;
@@ -287,11 +290,11 @@
 							      ]
 							}
 					
-					//if(addRegistrationDots){
+					if(addRegistrationDots){
 						if(ref)
 							ref.warn("Order2SiteFlow add  " + dots.length + " dots");
 						pages[pageIndex].elements = dots;
-					//}
+					}
 					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
 					node = packer.Insert(h, w, packMethod);
 					node["class"] = itemName;
