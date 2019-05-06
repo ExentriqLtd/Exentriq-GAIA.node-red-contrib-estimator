@@ -64,7 +64,7 @@
 			var layouts = null;
 		
 			if(ref)
-				ref.warn("Order2SiteFlow type " + typeof(clientDetails));
+				ref.warn("Order2SiteFlow addRegistrationDots " + addRegistrationDots);
 			
 			if(ref)
 				ref.warn("Order2SiteFlow items " + items);
@@ -272,9 +272,6 @@
 		      
 		      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
 		        
-		        if(ref)
-					ref.warn("Order2SiteFlow set node " + i);
-				
 		        node = packer.Insert(h, w, packMethod);
 				if(node.height == 0){
 					firstPageIsFull = true;
