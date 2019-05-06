@@ -1027,5 +1027,5 @@
 	
 	}; // class end
 	
-    RED.nodes.registerType("order-to-siteflow", Order2SiteFlow);
+    RED.nodes.registerType("estimator", Estimator);
 }
