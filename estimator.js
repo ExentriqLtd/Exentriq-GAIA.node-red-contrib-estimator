@@ -265,10 +265,16 @@
 		      
 		      if(ref)
 				ref.warn("Order2SiteFlow firstPageIsFull " + firstPageIsFull);
+				
+			if(ref)
+				ref.warn("Order2SiteFlow quantity " + item.quantity);
 		      
 		      
 		      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
 		        
+		        if(ref)
+					ref.warn("Order2SiteFlow set node " + i);
+				
 		        node = packer.Insert(h, w, packMethod);
 				if(node.height == 0){
 					firstPageIsFull = true;
