@@ -9,8 +9,10 @@
         	
         		//layout preparation
     			var items = msg.payload.items;
+    			var layout = msg.payload.layout;
+    			var settings = msg.payload.settings;
         		
-                var tmpLayouts = runPacker(items, node);
+                var tmpLayouts = runPacker(items, node, layout, settings);
                 
                 msg.payload = tmpLayouts;
                 
@@ -45,7 +47,22 @@
 		return input/scale;
 	}
 	
-	function runPacker(items, ref){
+	function runPacker(items, ref, layout, settings){
+		
+			pageWidth = layout.pageWidth; //inches, = 800mm
+			pageHeight = layout.pageHeight;
+			pageMargin = layout.pageMargin;
+			cutLinesSpace = layout.gutter;
+			pageTotalMargin = pageMargin*2;
+			
+			dotWidth = 0.1875;
+			dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
+					
+			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
+			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
+			
+			packMethod = settings.packMethod;
+		
 			var layouts = null;
 		
 			if(ref)
