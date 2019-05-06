@@ -24,23 +24,13 @@
     }
     
     var packer = null;
-	var pageWidth = 29.5; //inches, = 800mm
-	var pageHeight = 20.75;
-	var pageMargin = 0.5;
-	var cutLinesSpace = 0.25
-	var pageTotalMargin = pageMargin*2;
-	
+	var pageWidth ,pageHeight, pageMargin, cutLinesSpace, pageTotalMargin, packMethod;
 	var dotWidth = 0.1875;
 	var dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
 			
-	var pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
-	var pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
+	var pageWidthNoMargins,pageHeightNoMargins; 
 			
 	var unit = "in";
-	var packMethod = 0;
-	
-	
-	var showPreview = false;
 	
 	function scaleToFit(input){
 		scale = 10;
@@ -61,7 +51,7 @@
 			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
 			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
 			
-			packMethod = settings.packMethod;
+			packMethod = settings.packerMethod;
 		
 			var layouts = null;
 		
