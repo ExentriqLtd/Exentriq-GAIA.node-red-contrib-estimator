@@ -69,6 +69,7 @@
 			if(ref)
 				ref.warn("Order2SiteFlow items " + items);
 						
+			var count = 1; //for multiple layouts
 			layouts = runPackerCallback(items, ref, count)
 			return layouts;
 	}
