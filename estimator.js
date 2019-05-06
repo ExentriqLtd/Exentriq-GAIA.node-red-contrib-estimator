@@ -10,7 +10,7 @@
         		//layout preparation
     			var items = msg.payload.items;
         		
-                var tmpLayouts = runPacker(items, itemsArtMap, node);
+                var tmpLayouts = runPacker(items, node);
                 
                 msg.payload.layouts = tmpLayouts;
                 
