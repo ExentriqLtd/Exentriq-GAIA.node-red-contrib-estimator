@@ -31,6 +31,7 @@
 	var pageWidthNoMargins,pageHeightNoMargins; 
 	
 	var addRegistrationDots = false;
+	var fillLastPage = false;
 			
 	var unit = "in";
 	
@@ -53,9 +54,12 @@
 			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
 			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
 			
-			packMethod = settings.packerMethod;
-			
-			addRegistrationDots = settings.addRegistrationDots;
+			if(settings.packerMethod)
+				packMethod = settings.packerMethod;
+			if(settings.fillLastPage)
+				fillLastPage = settings.fillLastPage;
+			if(settings.addRegistrationDots)
+				addRegistrationDots = settings.addRegistrationDots;
 		
 			var layouts = null;
 		
@@ -257,7 +261,8 @@
 		        "asset": itemName
 		      })
 		        
-		      var firstPageIsFull = false; //this is a new option for labelllama: if stickers not fill the page, add more to fill all the page
+		      var firstPageIsFull = !fillLastPage; //this is a new option for labelllama: if stickers not fill the page, add more to fill all the page
+		      
 		      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
 		        
 		        node = packer.Insert(h, w, packMethod);
