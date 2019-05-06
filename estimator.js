@@ -263,12 +263,16 @@
 		        
 		      var firstPageIsFull = !fillLastPage; //this is a new option for labelllama: if stickers not fill the page, add more to fill all the page
 		      
+		      if(ref)
+				ref.warn("Order2SiteFlow firstPageIsFull " + firstPageIsFull);
+		      
+		      
 		      for(var i=0; i < item.quantity || !firstPageIsFull; i++){
 		        
 		        node = packer.Insert(h, w, packMethod);
 				if(node.height == 0){
 					firstPageIsFull = true;
-					if(i > item.quantity){
+					if(i > item.quantity && fillLastPage){
 						continue;
 					}
 					
