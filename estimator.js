@@ -293,7 +293,10 @@
 					if(addRegistrationDots){
 						if(ref)
 							ref.warn("Order2SiteFlow add  " + dots.length + " dots");
-						pages[pageIndex].elements = dots;
+							
+						for(var d=0; d < dots.length; d++){
+							pages[pageIndex].elements.push(dots[d]);
+						}
 					}
 					packer = new MaxRectsBinPack(pageWidthNoMargins, pageHeightNoMargins);
 					node = packer.Insert(h, w, packMethod);
