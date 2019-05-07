@@ -1,7 +1,7 @@
 {
     "name": "node-red-contrib-estimator",
     "version": "1.0.0",
-    "description": "Estimator",
+    "description": "Istimater",
     "author": "Emilio Sabatucci <sabatucci@gmail.com>",
     "keywords": [
         "node-red"
