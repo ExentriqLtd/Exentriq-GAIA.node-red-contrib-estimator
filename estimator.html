@@ -4,7 +4,9 @@
         color: '#FFFFFF',
         defaults: {
             name: {value:""},
-            addRegistrationDots: {value: false, required: false}
+            addRegistrationDots: {value: false, required: false},
+            fillLastPage: {value: false, required: false},
+            packerMethod: {value: 1, required: true}
         },
         inputs:1,
         outputs:1,
@@ -22,11 +24,51 @@
     </div>
 	<div class="form-row">
         <label for="node-input-addRegistrationDots"><i class="icon-tag"></i> Add registration dots</label>
-        <input type="checkbox" id="node-input-addRegistrationDots" placeholder="Add registration dots">
+        <input type="checkbox" id="node-input-addRegistrationDots" placeholder="Add registration dots" style="width: 10%; vertical-align: top;">
     </div>
+    
+    <div class="form-row">
+        <label for="node-input-fillLastPage"><i class="icon-tag"></i> Fill last page</label>
+        <input type="checkbox" id="node-input-fillLastPage" placeholder="Fill last page" style="width: 10%; vertical-align: top;">
+    </div>
+    
+    <div class="form-row">
+	    <label for="node-input-packerMethod"><i class="fa fa-wrench"></i> Packer Method</label>
+	    <select type="text" id="node-input-packerMethod">
+	      <option value="0">Best Short Side Fit</option>
+	      <option value="1">Best long Side Fit</option>
+	      <option value="2">Best Area Fit</option>
+	      <option value="3">Bottom Left Rule</option>
+	      <option value="4">Contact Point Rule</option>
+	    </select>
+	</div>
 </script>
+
+
+var RectBestShortSideFit = 0; ///< -BSSF: Positions the Rectangle against the short side of a free Rectangle into which it fits the best.
+var RectBestLongSideFit = 1; ///< -BLSF: Positions the Rectangle against the long side of a free Rectangle into which it fits the best.
+var RectBestAreaFit = 2; ///< -BAF: Positions the Rectangle into the smallest free Rectangle into which it fits.
+var RectBottomLeftRule = 3; ///< -BL: Does the Tetris placement.
+var RectContactPointRule = 4; ///< -CP: Choosest the placement where the Rectangle touches other Rectangles as much as possible
 
 <script type="text/x-red" data-help-name="estimator">
     <p>Istimater</p>
     <p>Receive in input a list of artworks and produces a json layout with all the printing information</p>
+    
+    <p>Add Registration Dots<br/>
+	    Add the dots used for calibrating the cut file
+    </p>
+    
+    <p>Fill Last Page<br/>
+	    If last page has empty space for more artworks, add them till page is full
+    </p>
+    
+    <p>Packer Methods</p>
+    <ul>
+    <li> Best Short Side Fit - Positions the Rectangle against the short side of a free Rectangle into which it fits the best.</li>
+	<li>Best Long Side Fit - Positions the Rectangle against the long side of a free Rectangle into which it fits the best.</li>
+	<li>Best Area Fit - Positions the Rectangle into the smallest free Rectangle into which it fits.</li>
+	<li>Bottom Left Rule - Does the Tetris placement.</li>
+	<li>Contact Point Rule - Choosest the placement where the Rectangle touches other Rectangles as much as possible</li>
+	</ul>
 </script>

@@ -20,6 +20,12 @@
 	        
 	        addRegistrationDots = config.addRegistrationDots || false;
 	        
+	        packMethod = config.packerMethod || 1;
+			
+			fillLastPage = config.fillLastPage || false;
+			
+			
+	        
             this.on('input', function(msg) {
         	
         		//layout preparation
@@ -59,10 +65,6 @@
 			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
 			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
 			
-			if(settings.packerMethod)
-				packMethod = settings.packerMethod;
-			if(settings.fillLastPage)
-				fillLastPage = settings.fillLastPage;
 			
 			var layouts = null;
 		
