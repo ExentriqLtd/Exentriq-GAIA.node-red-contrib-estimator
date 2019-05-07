@@ -4,7 +4,7 @@
         color: '#FFFFFF',
         defaults: {
             name: {value:""},
-            addRegistrationDots: {value: false}
+            addRegistrationDots: {value: false, required: false}
         },
         inputs:1,
         outputs:1,
@@ -21,11 +21,12 @@
         <input type="text" id="node-input-name" placeholder="Name">
     </div>
 	<div class="form-row">
-        <label for="node-config-input-addRegistrationDots"><i class="icon-tag"></i> Add registration dots</label>
-        <input type="checkbox" id="node-config-input-addRegistrationDots" placeholder="Add registration dots">
+        <label for="node-input-addRegistrationDots"><i class="icon-tag"></i> Add registration dots</label>
+        <input type="checkbox" id="node-input-addRegistrationDots" placeholder="Add registration dots">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="istimater">
+<script type="text/x-red" data-help-name="estimator">
     <p>Istimater</p>
+    <p>Receive in input a list of artworks and produces a json layout with all the printing information</p>
 </script>
