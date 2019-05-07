@@ -6,7 +6,7 @@
             name: {value:""},
             addRegistrationDots: {value: false, required: false},
             fillLastPage: {value: false, required: false},
-            packerMethod: {value: 1, required: true}
+            packerMethod: {value: "1", required: true}
         },
         inputs:1,
         outputs:1,
@@ -19,22 +19,22 @@
 
 <script type="text/x-red" data-template-name="estimator">
     <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
+        <label for="node-input-name" style="width: 150px;"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" style="width: 50%">
     </div>
 	<div class="form-row">
-        <label for="node-input-addRegistrationDots"><i class="icon-tag"></i> Add registration dots</label>
+        <label for="node-input-addRegistrationDots" style="width: 150px;"><i class="icon-tag"></i> Add registration dots</label>
         <input type="checkbox" id="node-input-addRegistrationDots" placeholder="Add registration dots" style="width: 10%; vertical-align: top;">
     </div>
     
     <div class="form-row">
-        <label for="node-input-fillLastPage"><i class="icon-tag"></i> Fill last page</label>
+        <label for="node-input-fillLastPage" style="width: 150px;"><i class="icon-tag"></i> Fill last page</label>
         <input type="checkbox" id="node-input-fillLastPage" placeholder="Fill last page" style="width: 10%; vertical-align: top;">
     </div>
     
     <div class="form-row">
 	    <label for="node-input-packerMethod"><i class="fa fa-wrench"></i> Packer Method</label>
-	    <select type="text" id="node-input-packerMethod">
+	    <select type="text" id="node-input-packerMethod" style="vertical-align: middle;">
 	      <option value="0">Best Short Side Fit</option>
 	      <option value="1">Best long Side Fit</option>
 	      <option value="2">Best Area Fit</option>

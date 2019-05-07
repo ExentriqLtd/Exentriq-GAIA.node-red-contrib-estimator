@@ -20,7 +20,11 @@
 	        
 	        addRegistrationDots = config.addRegistrationDots || false;
 	        
-	        packMethod = config.packerMethod || 1;
+	        if(config.packerMethod != null)
+		        packMethod = parseInt(config.packerMethod,10);
+		    else{
+			    packMethod = 1;
+		    }
 			
 			fillLastPage = config.fillLastPage || false;
 			
