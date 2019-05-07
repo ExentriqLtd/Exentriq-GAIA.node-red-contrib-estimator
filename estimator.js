@@ -18,10 +18,10 @@
 
         try {
 	        
-	        pageWidth = config.pageWidth; //inches, = 800mm
-			pageHeight = config.pageHeight;
-			pageMargin = config.pageMargin;
-			cutLinesSpace = config.gutter;
+	        pageWidth = parseFloat(config.pageWidth); //inches, = 800mm
+			pageHeight = parseFloat(config.pageHeight);
+			pageMargin = parseFloat(config.pageMargin);
+			cutLinesSpace = parseFloat(config.gutter);
 			pageTotalMargin = pageMargin*2;
 			
 			dotWidth = 0.1875;
