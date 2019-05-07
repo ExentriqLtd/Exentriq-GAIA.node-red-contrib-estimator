@@ -1,5 +1,5 @@
 {
-    "name": "node-red-contrib-estimator",
+    "name": "node-red-contrib-istimater",
     "version": "1.0.0",
     "description": "Istimater",
     "author": "Emilio Sabatucci <sabatucci@gmail.com>",
@@ -11,7 +11,7 @@
     },
     "node-red": {
         "nodes": {
-            "avro": "estimator.js"
+            "avro": "istimater.js"
         }
     }
 }

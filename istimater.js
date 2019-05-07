@@ -1043,5 +1043,5 @@
 	
 	}; // class end
 	
-    RED.nodes.registerType("estimator", Estimator);
+    RED.nodes.registerType("istimater", Estimator);
 }
