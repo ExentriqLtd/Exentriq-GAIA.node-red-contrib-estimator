@@ -6,7 +6,11 @@
             name: {value:""},
             addRegistrationDots: {value: false, required: false},
             fillLastPage: {value: false, required: false},
-            packerMethod: {value: "1", required: true}
+            packerMethod: {value: "1", required: true},
+            pageWidth: {value: 29.5, required: true},
+            pageHeight: {value: 20.75, required: true},
+            pageMargin: {value: 0.5, required: true},
+            gutter: {value: 0.25, required: true}
         },
         inputs:1,
         outputs:1,
@@ -22,6 +26,29 @@
         <label for="node-input-name" style="width: 150px;"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name" style="width: 50%">
     </div>
+    
+    
+    <div class="form-row">
+        <label for="node-input-pageWidth" style="width: 150px;"><i class="icon-tag"></i> Page Width</label>
+        <input type="text" id="node-input-pageWidth" placeholder="Page Width" style="width: 50%;">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-pageHeight" style="width: 150px;"><i class="icon-tag"></i> Page Height</label>
+        <input type="text" id="node-input-pageHeight" placeholder="Page Height" style="width: 50%;">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-pageMargin" style="width: 150px;"><i class="icon-tag"></i> Page Margin</label>
+        <input type="text" id="node-input-pageMargin" placeholder="Page Margin" style="width: 50%;">
+    </div>
+    
+    <div class="form-row">
+        <label for="node-input-gutter" style="width: 150px;"><i class="icon-tag"></i> Gutter</label>
+        <input type="text" id="node-input-gutter" placeholder="Gutter" style="width: 50%;">
+    </div>
+    
+    
 	<div class="form-row">
         <label for="node-input-addRegistrationDots" style="width: 150px;"><i class="icon-tag"></i> Add registration dots</label>
         <input type="checkbox" id="node-input-addRegistrationDots" placeholder="Add registration dots" style="width: 10%; vertical-align: top;">

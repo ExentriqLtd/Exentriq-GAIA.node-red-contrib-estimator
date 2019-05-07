@@ -18,6 +18,18 @@
 
         try {
 	        
+	        pageWidth = config.pageWidth; //inches, = 800mm
+			pageHeight = config.pageHeight;
+			pageMargin = config.pageMargin;
+			cutLinesSpace = config.gutter;
+			pageTotalMargin = pageMargin*2;
+			
+			dotWidth = 0.1875;
+			dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
+					
+			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
+			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
+			
 	        addRegistrationDots = config.addRegistrationDots || false;
 	        
 	        if(config.packerMethod != null)
@@ -34,10 +46,8 @@
         	
         		//layout preparation
     			var items = msg.payload.items;
-    			var layout = msg.payload.layout;
-    			var settings = msg.payload.settings;
-        		
-                var tmpLayouts = runPacker(items, node, layout, settings);
+    			
+                var tmpLayouts = runPacker(items, node);
                 
                 msg.payload = tmpLayouts;
                 
@@ -55,19 +65,9 @@
 		return input/scale;
 	}
 	
-	function runPacker(items, ref, layout, settings){
+	function runPacker(items, ref){
 		
-			pageWidth = layout.pageWidth; //inches, = 800mm
-			pageHeight = layout.pageHeight;
-			pageMargin = layout.pageMargin;
-			cutLinesSpace = layout.gutter;
-			pageTotalMargin = pageMargin*2;
 			
-			dotWidth = 0.1875;
-			dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
-					
-			pageWidthNoMargins = pageWidth - pageTotalMargin - dotsSpace;
-			pageHeightNoMargins = pageHeight - pageTotalMargin - dotsSpace; 
 			
 			
 			var layouts = null;
