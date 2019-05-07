@@ -33,7 +33,7 @@
     </div>
     
     <div class="form-row">
-	    <label for="node-input-packerMethod"><i class="fa fa-wrench"></i> Packer Method</label>
+	    <label for="node-input-packerMethod"  style="width: 150px;"><i class="fa fa-wrench"></i> Packer Method</label>
 	    <select type="text" id="node-input-packerMethod" style="vertical-align: middle;">
 	      <option value="0">Best Short Side Fit</option>
 	      <option value="1">Best long Side Fit</option>
@@ -44,26 +44,19 @@
 	</div>
 </script>
 
-
-var RectBestShortSideFit = 0; ///< -BSSF: Positions the Rectangle against the short side of a free Rectangle into which it fits the best.
-var RectBestLongSideFit = 1; ///< -BLSF: Positions the Rectangle against the long side of a free Rectangle into which it fits the best.
-var RectBestAreaFit = 2; ///< -BAF: Positions the Rectangle into the smallest free Rectangle into which it fits.
-var RectBottomLeftRule = 3; ///< -BL: Does the Tetris placement.
-var RectContactPointRule = 4; ///< -CP: Choosest the placement where the Rectangle touches other Rectangles as much as possible
-
 <script type="text/x-red" data-help-name="estimator">
-    <p>Istimater</p>
+    <p><b>Istimater</b></p>
     <p>Receive in input a list of artworks and produces a json layout with all the printing information</p>
     
-    <p>Add Registration Dots<br/>
+    <p><b>Add Registration Dots</b><br/>
 	    Add the dots used for calibrating the cut file
     </p>
     
-    <p>Fill Last Page<br/>
+    <p><b>Fill Last Page</b><br/>
 	    If last page has empty space for more artworks, add them till page is full
     </p>
     
-    <p>Packer Methods</p>
+    <p><b>Packer Methods</b></p>
     <ul>
     <li> Best Short Side Fit - Positions the Rectangle against the short side of a free Rectangle into which it fits the best.</li>
 	<li>Best Long Side Fit - Positions the Rectangle against the long side of a free Rectangle into which it fits the best.</li>
