@@ -1,10 +1,25 @@
  module.exports = function(RED) {
 
+ 	var packer = null;
+	var pageWidth ,pageHeight, pageMargin, cutLinesSpace, pageTotalMargin, packMethod;
+	var dotWidth = 0.1875;
+	var dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
+			
+	var pageWidthNoMargins,pageHeightNoMargins; 
+	
+	var addRegistrationDots = false;
+	var fillLastPage = false;
+			
+	var unit = "in";
+	
     function Estimator(config) {
         RED.nodes.createNode(this, config);
         var node = this;
 
         try {
+	        
+	        addRegistrationDots = config.addRegistrationDots || false;
+	        
             this.on('input', function(msg) {
         	
         		//layout preparation
@@ -23,17 +38,7 @@
         }
     }
     
-    var packer = null;
-	var pageWidth ,pageHeight, pageMargin, cutLinesSpace, pageTotalMargin, packMethod;
-	var dotWidth = 0.1875;
-	var dotsSpace = dotWidth*2;// + cutLinesSpace; //we need to reserve a space in the printable area that is just for dots
-			
-	var pageWidthNoMargins,pageHeightNoMargins; 
-	
-	var addRegistrationDots = false;
-	var fillLastPage = false;
-			
-	var unit = "in";
+    
 	
 	function scaleToFit(input){
 		scale = 10;
@@ -58,9 +63,7 @@
 				packMethod = settings.packerMethod;
 			if(settings.fillLastPage)
 				fillLastPage = settings.fillLastPage;
-			if(settings.addRegistrationDots)
-				addRegistrationDots = settings.addRegistrationDots;
-		
+			
 			var layouts = null;
 		
 			if(ref)

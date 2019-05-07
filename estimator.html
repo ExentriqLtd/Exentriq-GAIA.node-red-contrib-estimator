@@ -4,6 +4,7 @@
         color: '#FFFFFF',
         defaults: {
             name: {value:""},
+            addRegistrationDots: {value: false}
         },
         inputs:1,
         outputs:1,
@@ -14,10 +15,21 @@
     });
 </script>
 
-<script type="text/x-red" data-template-name="istimater">
+<script type="text/x-red" data-template-name="estimator">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-template-name="estimator-configuration">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+	<div class="form-row">
+        <label for="node-config-input-addRegistrationDots"><i class="icon-tag"></i> Add registration dots</label>
+        <input type="checkbox" id="node-config-input-addRegistrationDots" placeholder="Add registration dots">
     </div>
 </script>
 
